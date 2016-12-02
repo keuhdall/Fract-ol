@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 10:49:47 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/02 03:31:29 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/02 17:26:58 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ void	ft_draw_julia(t_julia j, int width, int height)
 		while (++p.x < width)
 		{
 			i = -1;
-			j.nRe = 1.5 * (p.x - width / 2) / (0.5 * j.zoom * width) + j.move_x;
-			j.nIm = (p.y - height / 2) / (0.5 * j.zoom * height) + j.move_y;
+			j.nre = 1.5 * (p.x - width / 2) / (0.5 * j.zoom * width) + j.move_x;
+			j.nim = (p.y - height / 2) / (0.5 * j.zoom * height) + j.move_y;
 			while (++i < j.max)
 			{
-				j.oldRe = j.nRe;
-				j.oldIm = j.nIm;
-				j.nRe = j.oldRe * j.oldRe - j.oldIm * j.oldIm + j.cRe;
-				j.nIm = 2 * j.oldRe * j.oldIm + j.cIm;
-				if ((j.nRe * j.nRe + j.nIm * j.nIm) > 4)
+				j.oldre = j.nre;
+				j.oldim = j.nim;
+				j.nre = j.oldre * j.oldre - j.oldim * j.oldim + j.cre;
+				j.nim = 2 * j.oldre * j.oldim + j.cim;
+				if ((j.nre * j.nre + j.nim * j.nim) > 4)
 					break ;
 			}
-			mlx_pixel_put(j.mlx.ptr, j.mlx.win, p.x, p.y, 0x00FF00 * i - 3 * i);
+			mlx_pixel_put(j.mlx.ptr, j.mlx.win, p.x, p.y, i % 256 * i);
 		}
 	}
 }
@@ -51,17 +51,17 @@ void	ft_draw_mandel(t_mandel m, int width, int height)
 		p.x = -1;
 		while (++p.x < width)
 		{
-			m.cRe = 1.5 * (p.x - width / 2) / (0.5 * m.zoom * width) + m.move_x;
-			m.cIm = (p.y - height / 2) / (0.5 * m.zoom * height) + m.move_y;
-			m.nRe = m.nIm = m.oldRe = m.oldIm = 0;
+			m.cre = 1.5 * (p.x - width / 2) / (0.5 * m.zoom * width) + m.move_x;
+			m.cim = (p.y - height / 2) / (0.5 * m.zoom * height) + m.move_y;
+			ft_set_zero(&m);
 			i = -1;
 			while (++i < m.max)
 			{
-				m.oldRe = m.nRe;
-				m.oldIm = m.nIm;
-				m.nRe = m.oldRe * m.oldRe - m.oldIm * m.oldIm + m.cRe;
-				m.nIm = 2 * m.oldRe * m.oldIm + m.cIm;
-				if ((m.nRe * m.nRe + m.nIm * m.nIm) > 4)
+				m.oldre = m.nre;
+				m.oldim = m.nim;
+				m.nre = m.oldre * m.oldre - m.oldim * m.oldim + m.cre;
+				m.nim = 2 * m.oldre * m.oldim + m.cim;
+				if ((m.nre * m.nre + m.nim * m.nim) > 4)
 					break ;
 			}
 			mlx_pixel_put(m.mlx.ptr, m.mlx.win, p.x, p.y, 0x0000FF * i - 3 * i);
@@ -83,7 +83,7 @@ void	ft_draw_sierpinski(t_sierpinski s, int width, int height)
 				(p.y / 1) % 3 == 1) &&
 				!((p.x / 3) % 3 == 1 &&
 				(p.y / 3) % 3 == 1) &&
-				!( (p.x / 9) % 3 == 1 &&
+				!((p.x / 9) % 3 == 1 &&
 				(p.y / 9) % 3 == 1) &&
 				!((p.x / 27) % 3 == 1 &&
 				(p.y / 27) % 3 == 1) &&
