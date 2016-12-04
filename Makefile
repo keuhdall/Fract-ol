@@ -6,7 +6,7 @@
 #*   By: lmarques <lmarques@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/10 23:15:25 by lmarques          #+#    #+#             *#
-#*   Updated: 2016/11/11 01:28:36 by lmarques         ###   ########.fr       *#
+#*   Updated: 2016/12/04 03:18:06 by lmarques         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -14,7 +14,9 @@ NAME = fractol
 
 SRC = fractol.c \
 	  tools.c \
-	  events.c \
+	  events_julia.c \
+	  events_mendelbrot.c \
+	  events_sierpinksi.c \
 
 OBJ = $(SRC:.c=.o)
 
