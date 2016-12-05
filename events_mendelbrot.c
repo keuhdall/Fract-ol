@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 12:50:08 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/04 03:00:06 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/05 19:19:34 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int		ft_mouse_events_m(int button, int x, int y, t_frac *f)
 		if (button == 5)
 			f->m.zoom <= 1 ? f->m.zoom = 1 : f->m.zoom--;
 	}
-	ft_draw_mandel(f->m, 800, 600);
+	ft_draw_mandel(&(f->m), 800, 600);
+	mlx_put_image_to_window(f->m.mlx.ptr, f->m.mlx.win, f->m.mlx.img, 0, 0);
 	return (0);
 }
 
@@ -40,6 +41,7 @@ int		ft_keyboard_events_m(int keycode, t_frac *f)
 		f->m.max += 10;
 	if (keycode == 27)
 		f->m.max -= 10;
-	ft_draw_mandel(f->m, 800, 600);
+	ft_draw_mandel(&(f->m), 800, 600);
+	mlx_put_image_to_window(f->m.mlx.ptr, f->m.mlx.win, f->m.mlx.img, 0, 0);
 	return (0);
 }

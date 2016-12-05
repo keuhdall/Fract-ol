@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 10:49:47 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/04 04:31:45 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/05 19:48:55 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_color(int r, int g, int b)
 	return(((r & 0xFF) << 16) + ((g & 0xFF) << 8) + (b & 0xFF));
 }
 
-void	ft_draw_julia(t_julia j, int width, int height)
+void	ft_draw_julia(t_julia *j, int width, int height)
 {
 	t_point	p;
 	int		i;
@@ -29,25 +29,25 @@ void	ft_draw_julia(t_julia j, int width, int height)
 		while (++p.x < width)
 		{
 			i = -1;
-			j.nre = 1.5 * (p.x - width / 2) / (0.5 * j.zoom * width) + j.move_x;
-			j.nim = (p.y - height / 2) / (0.5 * j.zoom * height) + j.move_y;
-			while (++i < j.max)
+			j->nre = 1.5 * (p.x - width / 2) / (0.5 * j->zoom * width) + j->move_x;
+			j->nim = (p.y - height / 2) / (0.5 * j->zoom * height) + j->move_y;
+			while (++i < j->max)
 			{
-				j.oldre = j.nre;
-				j.oldim = j.nim;
-				j.nre = j.oldre * j.oldre - j.oldim * j.oldim + j.cre;
-				j.nim = 2 * j.oldre * j.oldim + j.cim;
-				if ((j.nre * j.nre + j.nim * j.nim) > 4)
+				j->oldre = j->nre;
+				j->oldim = j->nim;
+				j->nre = j->oldre * j->oldre - j->oldim * j->oldim + j->cre;
+				j->nim = 2 * j->oldre * j->oldim + j->cim;
+				if ((j->nre * j->nre + j->nim * j->nim) > 4)
 					break ;
 			}
-			mlx_pixel_put(j.mlx.ptr, j.mlx.win, p.x + j.p.x, p.y + j.p.y,
-				ft_color(i % 256, 255, 255 * (i < j.max)));
+			//mlx_pixel_put(j->mlx.ptr, j->mlx.win, p.x + j->p.x, p.y + j->p.y,
 			//0xFF00FF >> i / 10);
+			j->mlx.data[p.y * 800 + p.x] =  i == j->max ? 0 : i * 500;
 		}
 	}
 }
 
-void	ft_draw_mandel(t_mandel m, int width, int height)
+void	ft_draw_mandel(t_mandel *m, int width, int height)
 {
 	t_point	p;
 	int		i;
@@ -58,20 +58,24 @@ void	ft_draw_mandel(t_mandel m, int width, int height)
 		p.x = -1;
 		while (++p.x < width)
 		{
-			m.cre = 1.5 * (p.x - width / 2) / (0.5 * m.zoom * width) + m.move_x;
-			m.cim = (p.y - height / 2) / (0.5 * m.zoom * height) + m.move_y;
-			ft_set_zero(&m);
+			m->cre = 1.5 * (p.x - width / 2) / (0.5 * m->zoom * width) + m->move_x;
+			m->cim = (p.y - height / 2) / (0.5 * m->zoom * height) + m->move_y;
+			//ft_set_zero(m);
+			m->nre = 0;
+			m->nim = 0;
+			m->oldre = 0;
+			m->oldim = 0;
 			i = -1;
-			while (++i < m.max)
+			while (++i < m->max)
 			{
-				m.oldre = m.nre;
-				m.oldim = m.nim;
-				m.nre = m.oldre * m.oldre - m.oldim * m.oldim + m.cre;
-				m.nim = 2 * m.oldre * m.oldim + m.cim;
-				if ((m.nre * m.nre + m.nim * m.nim) > 4)
+				m->oldre = m->nre;
+				m->oldim = m->nim;
+				m->nre = m->oldre * m->oldre - m->oldim * m->oldim + m->cre;
+				m->nim = 2 * m->oldre * m->oldim + m->cim;
+				if ((m->nre * m->nre + m->nim * m->nim) > 4)
 					break ;
 			}
-			mlx_pixel_put(m.mlx.ptr, m.mlx.win, p.x + m.p.x, p.y + m.p.y, 0x0000FF * i - 3 * i);
+			m->mlx.data[p.y * 800 + p.x] = i == m->max ? 0 : i * 500;//0x0000FF * i - 3 * i;
 		}
 	}
 }
