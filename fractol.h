@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 10:54:16 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/06 00:39:04 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/06 19:22:36 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define FRACTOL_H
 
 # include <math.h>
-# include <pthread.h>
-# include <stdio.h>
 # include "libft/libft.h"
 # include "libft/get_next_line.h"
 # include "minilibx/mlx.h"
@@ -48,9 +46,8 @@ typedef struct		s_julia
 	double			oldre;
 	double			oldim;
 	double			zoom;
-	double			move_x;
-	double			move_y;
-	int				color;
+	double			m_x;
+	double			m_y;
 	int				max;
 }					t_julia;
 
@@ -65,18 +62,26 @@ typedef struct		s_mandel
 	double			oldre;
 	double			oldim;
 	double			zoom;
-	double			move_x;
-	double			move_y;
-	int				color;
+	double			m_x;
+	double			m_y;
 	int				max;
 }					t_mandel;
 
-typedef struct		s_sierpinski
+typedef struct		s_bship
 {
 	t_meta			mlx;
 	t_point			p;
-	int				zoom;
-}					t_sierpinski;
+	double			cre;
+	double			cim;
+	double			nre;
+	double			nim;
+	double			oldre;
+	double			oldim;
+	double			zoom;
+	double			m_x;
+	double			m_y;
+	int				max;
+}					t_bship;
 
 typedef struct		s_frac
 {
@@ -84,20 +89,27 @@ typedef struct		s_frac
 	char			freeze;
 	t_julia			j;
 	t_mandel		m;
-	t_sierpinski	s;
+	t_bship			bs;
 }					t_frac;
 
-void				ft_set_zero(t_mandel *m);
+void				ft_set_zero(double *nre, double *nim, double *oldre,
+						double *oldim);
 void				ft_print_fractal(t_frac frac);
+void				ft_process_julia(t_frac f);
+void				ft_process_mandel(t_frac f);
+void				ft_process_bship(t_frac f);
+void				ft_init_julia(t_frac *f);
+void				ft_init_mandel(t_frac *f);
+void				ft_init_bship(t_frac *f);
 void				ft_draw_julia(t_julia *j, int width, int height);
 void				ft_draw_mandel(t_mandel *m, int width, int height);
-void				ft_draw_sierpinski(t_sierpinski *s, int width, int height);
+void				ft_draw_bship(t_bship *bs, int width, int height);
 int					ft_keyboard_events_j(int keycode, t_frac *f);
 int					ft_keyboard_events_m(int keycode, t_frac *f);
-int					ft_keyboard_events_s(int keycode, t_frac *f);
+int					ft_keyboard_events_bs(int keycode, t_frac *f);
 int					ft_mouse_events_j(int button, int x, int y, t_frac *f);
 int					ft_mouse_events_m(int button, int x, int y, t_frac *f);
-int					ft_mouse_events_s(int button, int x, int y, t_frac *f);
+int					ft_mouse_events_bs(int button, int x, int y, t_frac *f);
 int					ft_hover_mouse_events_j(int x, int y, t_frac *f);
 
 #endif

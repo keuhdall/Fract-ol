@@ -16,7 +16,7 @@ SRC = fractol.c \
 	  tools.c \
 	  events_julia.c \
 	  events_mendelbrot.c \
-	  events_sierpinksi.c \
+	  events_bship.c \
 
 OBJ = $(SRC:.c=.o)
 
