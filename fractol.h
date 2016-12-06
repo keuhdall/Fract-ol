@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 10:54:16 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/05 19:41:43 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/06 00:39:04 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <math.h>
 # include <pthread.h>
+# include <stdio.h>
 # include "libft/libft.h"
 # include "libft/get_next_line.h"
 # include "minilibx/mlx.h"
@@ -90,7 +91,7 @@ void				ft_set_zero(t_mandel *m);
 void				ft_print_fractal(t_frac frac);
 void				ft_draw_julia(t_julia *j, int width, int height);
 void				ft_draw_mandel(t_mandel *m, int width, int height);
-void				ft_draw_sierpinski(t_sierpinski s, int width, int height);
+void				ft_draw_sierpinski(t_sierpinski *s, int width, int height);
 int					ft_keyboard_events_j(int keycode, t_frac *f);
 int					ft_keyboard_events_m(int keycode, t_frac *f);
 int					ft_keyboard_events_s(int keycode, t_frac *f);

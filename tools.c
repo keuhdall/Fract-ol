@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 12:05:24 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/05 19:42:21 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/06 00:44:43 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_init_mandel(t_frac *f)
 	f->m.mlx.ptr = mlx_init();
 	f->m.mlx.win = mlx_new_window(f->m.mlx.ptr, 800, 600, "fractol");
 	f->m.mlx.img = mlx_new_image(f->m.mlx.ptr, 800, 600);
-	f->m.mlx.data = (int *)mlx_get_data_addr(f->m.mlx.ptr, &(f->m.mlx.bpp),
+	f->m.mlx.data = (int *)mlx_get_data_addr(f->m.mlx.img, &(f->m.mlx.bpp),
 		&(f->m.mlx.size_line), &(f->m.mlx.endian));
 	f->m.cre = 0.0;
 	f->m.cim = 0.0;
@@ -64,7 +64,7 @@ void	ft_init_sierpinski(t_frac *f)
 	f->s.mlx.ptr = mlx_init();
 	f->s.mlx.win = mlx_new_window(f->s.mlx.ptr, 800, 600, "fractol");
 	f->s.mlx.img = mlx_new_image(f->s.mlx.ptr, 800, 600);
-	f->s.mlx.data = (int *)mlx_get_data_addr(f->s.mlx.ptr, &(f->s.mlx.bpp),
+	f->s.mlx.data = (int *)mlx_get_data_addr(f->s.mlx.img, &(f->s.mlx.bpp),
 		&(f->s.mlx.size_line), &(f->s.mlx.endian));
 	f->s.zoom = 1;
 	f->s.p.x = 0;
@@ -103,7 +103,8 @@ void	ft_print_fractal(t_frac f)
 	if (f.id == 3)
 	{
 		ft_init_sierpinski(&f);
-		ft_draw_sierpinski(f.s, 800, 600);
+		ft_draw_sierpinski(&(f.s), 800, 600);
+		mlx_put_image_to_window(f.s.mlx.ptr, f.s.mlx.win, f.s.mlx.img, 0, 0);
 		mlx_mouse_hook(f.s.mlx.win, &ft_mouse_events_s, &f);
 		mlx_key_hook(f.s.mlx.win, &ft_keyboard_events_s, &f);
 		mlx_loop(f.s.mlx.ptr);

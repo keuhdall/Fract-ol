@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 10:49:47 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/05 19:48:55 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/06 00:50:02 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	ft_draw_julia(t_julia *j, int width, int height)
 		while (++p.x < width)
 		{
 			i = -1;
-			j->nre = 1.5 * (p.x - width / 2) / (0.5 * j->zoom * width) + j->move_x;
+			j->nre = 1.5 * (p.x - width / 2) / (0.5 * j->zoom * width) +
+				j->move_x;
 			j->nim = (p.y - height / 2) / (0.5 * j->zoom * height) + j->move_y;
 			while (++i < j->max)
 			{
@@ -40,9 +41,7 @@ void	ft_draw_julia(t_julia *j, int width, int height)
 				if ((j->nre * j->nre + j->nim * j->nim) > 4)
 					break ;
 			}
-			//mlx_pixel_put(j->mlx.ptr, j->mlx.win, p.x + j->p.x, p.y + j->p.y,
-			//0xFF00FF >> i / 10);
-			j->mlx.data[p.y * 800 + p.x] =  i == j->max ? 0 : i * 500;
+			j->mlx.data[p.y * 800 + p.x] = i == j->max ? 0 : i * 500;
 		}
 	}
 }
@@ -58,13 +57,10 @@ void	ft_draw_mandel(t_mandel *m, int width, int height)
 		p.x = -1;
 		while (++p.x < width)
 		{
-			m->cre = 1.5 * (p.x - width / 2) / (0.5 * m->zoom * width) + m->move_x;
+			m->cre = 1.5 * (p.x - width / 2) / (0.5 * m->zoom * width) +
+				m->move_x;
 			m->cim = (p.y - height / 2) / (0.5 * m->zoom * height) + m->move_y;
-			//ft_set_zero(m);
-			m->nre = 0;
-			m->nim = 0;
-			m->oldre = 0;
-			m->oldim = 0;
+			ft_set_zero(m);
 			i = -1;
 			while (++i < m->max)
 			{
@@ -75,7 +71,7 @@ void	ft_draw_mandel(t_mandel *m, int width, int height)
 				if ((m->nre * m->nre + m->nim * m->nim) > 4)
 					break ;
 			}
-			m->mlx.data[p.y * 800 + p.x] = i == m->max ? 0 : i * 500;//0x0000FF * i - 3 * i;
+			m->mlx.data[p.y * 800 + p.x] = i == m->max ? 0 : 255 * i - 3 * i;
 		}
 	}
 }
@@ -109,18 +105,19 @@ void	ft_draw_mandel(t_mandel *m, int width, int height)
    }
    */
 
-void	ft_draw_sierpinski(t_sierpinski s, int width, int height)
+void	ft_draw_sierpinski(t_sierpinski *s, int width, int height)
 {
 	t_point	p;
 
 	p.y = -1;
-	while (++p.y < height + s.zoom)
+	while (++p.y < height + s->zoom)
 	{
 		p.x = -1;
-		while (++p.x < width + s.zoom)
+		while (++p.x < width + s->zoom)
 		{
 			if (p.x & p.y)
-				mlx_pixel_put(s.mlx.ptr, s.mlx.win, p.x + s.p.x, p.y + s.p.y, 0xFFFFFF);
+				s->mlx.data[p.y * 800 + p.x] = 0xFFFFFF;
+				//mlx_pixel_put(s->mlx.ptr, s->mlx.win, p.x + s->p.x, p.y + s->p.y, 0xFFFFFF);
 		}
 	}
 }

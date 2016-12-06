@@ -6,12 +6,11 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 12:50:08 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/05 19:09:20 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/05 20:55:06 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 int		ft_hover_mouse_events_j(int x, int y, t_frac *f)
 {

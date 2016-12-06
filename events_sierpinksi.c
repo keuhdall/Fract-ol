@@ -6,12 +6,11 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 12:50:08 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/04 03:21:57 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/06 00:43:58 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 int		ft_mouse_events_s(int button, int x, int y, t_frac *f)
 {
@@ -25,7 +24,8 @@ int		ft_mouse_events_s(int button, int x, int y, t_frac *f)
 		if (button == 5)
 			f->s.zoom <= 1 ? f->s.zoom = 1 : f->s.zoom--;
 	}
-	ft_draw_sierpinski(f->s, 800, 600);
+	ft_draw_sierpinski(&(f->s), 800, 600);
+	mlx_put_image_to_window(f->s.mlx.ptr, f->s.mlx.win, f->s.mlx.img, 0, 0);
 	return (0);
 }
 
@@ -36,6 +36,7 @@ int		ft_keyboard_events_s(int keycode, t_frac *f)
 		exit(1);
 	if (keycode == 49)
 		f->freeze = f->freeze == 'n' ? 'y' : 'n';
-	ft_draw_sierpinski(f->s, 800, 600);
+	ft_draw_sierpinski(&(f->s), 800, 600);
+	mlx_put_image_to_window(f->s.mlx.ptr, f->s.mlx.win, f->s.mlx.img, 0, 0);
 	return (0);
 }
