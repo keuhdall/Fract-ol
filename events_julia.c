@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 12:50:08 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/06 19:35:10 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/06 23:34:54 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,15 @@ int		ft_hover_mouse_events_j(int x, int y, t_frac *f)
 
 int		ft_mouse_events_j(int button, int x, int y, t_frac *f)
 {
-	if (button == 1 || button == 4 || button == 5)
+	if (button == 1 || button == 4)
 	{
 		f->j.m_x += 0.002 * (400 - x) / f->j.zoom;
 		f->j.m_y -= 0.002 * (300 - y) / f->j.zoom;
 		if (button == 4)
 			f->j.zoom *= 2;
-		if (button == 5)
-			f->j.zoom = f->j.zoom <= 1 ? 1 : f->j.zoom / 2;
 	}
+	if (button == 5)
+		f->j.zoom = f->j.zoom <= 1 ? 1 : f->j.zoom / 2;
 	mlx_clear_window(f->j.mlx.ptr, f->j.mlx.win);
 	ft_draw_julia(&(f->j), 800, 600);
 	mlx_put_image_to_window(f->j.mlx.ptr, f->j.mlx.win, f->j.mlx.img, 0, 0);

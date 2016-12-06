@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 12:50:08 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/06 19:34:26 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/06 23:39:41 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ void	ft_reset_bs(t_frac *f)
 int		ft_mouse_events_bs(int button, int x, int y, t_frac *f)
 {
 	mlx_clear_window(f->bs.mlx.ptr, f->bs.mlx.win);
-	if (button == 1 || button == 4 || button == 5)
+	if (button == 1 || button == 4)
 	{
 		f->bs.m_x += 0.002 * (400 - x) / f->bs.zoom;
 		f->bs.m_y += 0.002 * (300 - y) / f->bs.zoom;
 		if (button == 4)
 			f->bs.zoom *= 2;
-		if (button == 5)
-			f->bs.zoom = f->bs.zoom <= 1 ? 1 : f->bs.zoom / 2;
 	}
+	if (button == 5)
+		f->bs.zoom = f->bs.zoom <= 1 ? 1 : f->bs.zoom / 2;
 	ft_draw_bship(&(f->bs), 800, 600);
 	mlx_put_image_to_window(f->bs.mlx.ptr, f->bs.mlx.win, f->bs.mlx.img, 0, 0);
 	return (0);

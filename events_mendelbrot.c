@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 12:50:08 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/06 19:51:04 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/06 23:40:11 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ void	ft_reset_mandel(t_frac *f)
 int		ft_mouse_events_m(int button, int x, int y, t_frac *f)
 {
 	mlx_clear_window(f->m.mlx.ptr, f->m.mlx.win);
-	if (button == 1 || button == 4 || button == 5)
+	if (button == 1 || button == 4)
 	{
 		f->m.m_x += 0.002 * (400 - x) / f->m.zoom;
 		f->m.m_y += 0.002 * (300 - y) / f->m.zoom;
 		if (button == 4)
 			f->m.zoom *= 2;
-		if (button == 5)
-			f->m.zoom = f->m.zoom <= 1 ? 1 : f->m.zoom / 2;
 	}
+	if (button == 5)
+		f->m.zoom = f->m.zoom <= 1 ? 1 : f->m.zoom / 2;
 	ft_draw_mandel(&(f->m), 800, 600);
 	mlx_put_image_to_window(f->m.mlx.ptr, f->m.mlx.win, f->m.mlx.img, 0, 0);
 	return (0);
