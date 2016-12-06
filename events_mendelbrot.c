@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 12:50:08 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/06 19:36:58 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/06 19:51:04 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int		ft_keyboard_events_m(int keycode, t_frac *f)
 	mlx_clear_window(f->m.mlx.ptr, f->m.mlx.win);
 	if (keycode == 53)
 		exit(1);
+	if (keycode == 15)
+		ft_reset_mandel(f);
 	if (keycode == 49)
 		f->freeze = f->freeze == 'n' ? 'y' : 'n';
 	if (keycode == 24)
