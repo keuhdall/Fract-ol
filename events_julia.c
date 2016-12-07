@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 12:50:08 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/07 02:35:14 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/07 14:18:10 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_process_julia(t_frac f)
 	ft_draw_julia(&(f.j), 800, 600);
 	mlx_put_image_to_window(f.j.mlx.ptr, f.j.mlx.win, f.j.mlx.img, 0, 0);
 	mlx_hook(f.j.mlx.win, 6, 64, &ft_hover_mouse_events_j, &f);
-	mlx_hook(f.j.mlx.win, 17, 1L<<17, &ft_exit_sig, &f);
+	mlx_hook(f.j.mlx.win, 17, 1L << 17, &ft_exit_sig, &f);
 	mlx_mouse_hook(f.j.mlx.win, &ft_mouse_events_j, &f);
 	mlx_key_hook(f.j.mlx.win, &ft_keyboard_events_j, &f);
 	mlx_loop(f.j.mlx.ptr);

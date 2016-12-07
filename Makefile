@@ -15,7 +15,7 @@ NAME = fractol
 SRC = fractol.c \
 	  tools.c \
 	  events_julia.c \
-	  events_mendelbrot.c \
+	  events_mandelbrot.c \
 	  events_bship.c \
 
 OBJ = $(SRC:.c=.o)

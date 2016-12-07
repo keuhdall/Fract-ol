@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 12:05:24 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/07 02:36:14 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/07 14:16:29 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ void	ft_set_zero(double *nre, double *nim, double *oldre, double *oldim)
 int		ft_exit_sig(int key, t_frac *f)
 {
 	if (f->freeze == 'y')
-		exit (1);
+		exit(1);
 	else
-		exit (1);
+		exit(1);
 	key++;
-	return(0);
+	return (0);
 }

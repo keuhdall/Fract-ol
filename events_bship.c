@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 12:50:08 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/07 02:39:40 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/07 14:17:25 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_process_bship(t_frac f)
 	ft_init_bship(&f);
 	ft_draw_bship(&(f.bs), 800, 600);
 	mlx_put_image_to_window(f.bs.mlx.ptr, f.bs.mlx.win, f.bs.mlx.img, 0, 0);
-	mlx_hook(f.bs.mlx.win, 17, 1L<<17, &ft_exit_sig, &f);
+	mlx_hook(f.bs.mlx.win, 17, 1L << 17, &ft_exit_sig, &f);
 	mlx_mouse_hook(f.bs.mlx.win, &ft_mouse_events_bs, &f);
 	mlx_key_hook(f.bs.mlx.win, &ft_keyboard_events_bs, &f);
 	mlx_loop(f.bs.mlx.ptr);
