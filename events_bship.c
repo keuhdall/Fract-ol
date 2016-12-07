@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 12:50:08 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/07 14:17:25 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/07 19:22:16 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ int		ft_keyboard_events_bs(int keycode, t_frac *f)
 		f->bs.max += 10;
 	if (keycode == 27)
 		f->bs.max = f->bs.max <= 40 ? 40 : f->bs.max - 10;
+	if (keycode == 123 || keycode == 124)
+		f->bs.m_x = keycode == 123 ? f->bs.m_x + 0.5 /
+			f->bs.zoom : f->bs.m_x - 0.5 / f->bs.zoom;
+	if (keycode == 125 || keycode == 126)
+		f->bs.m_y = keycode == 125 ? f->bs.m_y - 0.5 /
+			f->bs.zoom : f->bs.m_y + 0.5 / f->bs.zoom;
 	ft_draw_bship(&(f->bs), 800, 600);
 	mlx_put_image_to_window(f->bs.mlx.ptr, f->bs.mlx.win, f->bs.mlx.img, 0, 0);
 	return (0);

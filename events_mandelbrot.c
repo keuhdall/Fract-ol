@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 12:50:08 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/07 14:18:34 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/07 19:19:59 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ int		ft_keyboard_events_m(int keycode, t_frac *f)
 		f->m.max += 10;
 	if (keycode == 27)
 		f->m.max = f->m.max <= 40 ? 40 : f->m.max - 10;
+	if (keycode == 123 || keycode == 124)
+		f->m.m_x = keycode == 123 ? f->m.m_x + 0.5 /
+			f->m.zoom : f->m.m_x - 0.5 / f->m.zoom;
+	if (keycode == 125 || keycode == 126)
+		f->m.m_y = keycode == 125 ? f->m.m_y - 0.5 /
+			f->m.zoom : f->m.m_y + 0.5 / f->m.zoom;
 	ft_draw_mandel(&(f->m), 800, 600);
 	mlx_put_image_to_window(f->m.mlx.ptr, f->m.mlx.win, f->m.mlx.img, 0, 0);
 	return (0);
