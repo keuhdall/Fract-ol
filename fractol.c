@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 10:49:47 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/07 02:41:35 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/07 02:45:31 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,8 @@ int		main(int argc, char *argv[])
 {
 	if (argc != 2 || ft_get_frac(argv[1]) == -1)
 	{
-		ft_putendl("Wrong use of the program.\nUse :\n\t-j for Julia");
-		ft_putendl("\t-m for Mandelbrot\n\t-bs for Burning Ship");
+		ft_putendl("Wrong use of the program.\nUse :\n\t-j  for Julia");
+		ft_putendl("\t-m  for Mandelbrot\n\t-bs for Burning Ship");
 		ft_putendl("The program only takes one parameter.");
 		return (0);
 	}
