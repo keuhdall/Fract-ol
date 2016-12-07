@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 12:50:08 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/06 23:40:11 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/07 02:40:39 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_process_mandel(t_frac f)
 	ft_init_mandel(&f);
 	ft_draw_mandel(&(f.m), 800, 600);
 	mlx_put_image_to_window(f.m.mlx.ptr, f.m.mlx.win, f.m.mlx.img, 0, 0);
+	mlx_hook(f.m.mlx.win, 17, 1L<<17, &ft_exit_sig, &f);
 	mlx_mouse_hook(f.m.mlx.win, &ft_mouse_events_m, &f);
 	mlx_key_hook(f.m.mlx.win, &ft_keyboard_events_m, &f);
 	mlx_loop(f.m.mlx.ptr);

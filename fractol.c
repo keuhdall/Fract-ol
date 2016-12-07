@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 10:49:47 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/06 19:00:04 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/07 02:41:35 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,20 +100,30 @@ void	ft_draw_bship(t_bship *bs, int w, int h)
 
 int		ft_get_frac(char *arg)
 {
+	t_frac	f;
+
+	f.freeze = 'n';
 	if (!ft_strcmp(arg, "-j"))
-		return (1);
+	{
+		ft_process_julia(f);
+		return (0);
+	}
 	if (!ft_strcmp(arg, "-m"))
-		return (2);
+	{
+		ft_process_mandel(f);
+		return (0);
+	}
 	if (!ft_strcmp(arg, "-bs"))
-		return (3);
+	{
+		ft_process_bship(f);
+		return (0);
+	}
 	else
 		return (-1);
 }
 
 int		main(int argc, char *argv[])
 {
-	t_frac	frac;
-
 	if (argc != 2 || ft_get_frac(argv[1]) == -1)
 	{
 		ft_putendl("Wrong use of the program.\nUse :\n\t-j for Julia");
@@ -121,8 +131,5 @@ int		main(int argc, char *argv[])
 		ft_putendl("The program only takes one parameter.");
 		return (0);
 	}
-	else
-		frac.id = ft_get_frac(argv[1]);
-	ft_print_fractal(frac);
 	return (0);
 }

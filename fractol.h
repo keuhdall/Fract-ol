@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 10:54:16 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/06 19:22:36 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/07 02:35:52 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ typedef struct		s_bship
 
 typedef struct		s_frac
 {
-	int				id;
 	char			freeze;
 	t_julia			j;
 	t_mandel		m;
@@ -94,7 +93,6 @@ typedef struct		s_frac
 
 void				ft_set_zero(double *nre, double *nim, double *oldre,
 						double *oldim);
-void				ft_print_fractal(t_frac frac);
 void				ft_process_julia(t_frac f);
 void				ft_process_mandel(t_frac f);
 void				ft_process_bship(t_frac f);
@@ -111,5 +109,6 @@ int					ft_mouse_events_j(int button, int x, int y, t_frac *f);
 int					ft_mouse_events_m(int button, int x, int y, t_frac *f);
 int					ft_mouse_events_bs(int button, int x, int y, t_frac *f);
 int					ft_hover_mouse_events_j(int x, int y, t_frac *f);
+int					ft_exit_sig(int key, t_frac *f);
 
 #endif

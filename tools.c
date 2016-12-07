@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 12:05:24 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/06 19:23:27 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/07 02:36:14 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,12 @@ void	ft_set_zero(double *nre, double *nim, double *oldre, double *oldim)
 	*oldim = 0;
 }
 
-void	ft_print_fractal(t_frac f)
+int		ft_exit_sig(int key, t_frac *f)
 {
-	if (f.id == 1)
-		ft_process_julia(f);
-	if (f.id == 2)
-		ft_process_mandel(f);
-	if (f.id == 3)
-		ft_process_bship(f);
+	if (f->freeze == 'y')
+		exit (1);
+	else
+		exit (1);
+	key++;
+	return(0);
 }
