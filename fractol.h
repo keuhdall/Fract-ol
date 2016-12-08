@@ -6,7 +6,7 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 10:54:16 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/07 02:35:52 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/08 14:54:30 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,60 +35,21 @@ typedef struct		s_meta
 	int				*data;
 }					t_meta;
 
-typedef struct		s_julia
-{
-	t_meta			mlx;
-	t_point			p;
-	double			cre;
-	double			cim;
-	double			nre;
-	double			nim;
-	double			oldre;
-	double			oldim;
-	double			zoom;
-	double			m_x;
-	double			m_y;
-	int				max;
-}					t_julia;
-
-typedef struct		s_mandel
-{
-	t_meta			mlx;
-	t_point			p;
-	double			cre;
-	double			cim;
-	double			nre;
-	double			nim;
-	double			oldre;
-	double			oldim;
-	double			zoom;
-	double			m_x;
-	double			m_y;
-	int				max;
-}					t_mandel;
-
-typedef struct		s_bship
-{
-	t_meta			mlx;
-	t_point			p;
-	double			cre;
-	double			cim;
-	double			nre;
-	double			nim;
-	double			oldre;
-	double			oldim;
-	double			zoom;
-	double			m_x;
-	double			m_y;
-	int				max;
-}					t_bship;
-
 typedef struct		s_frac
 {
+	t_meta			mlx;
+	t_point			p;
+	double			cre;
+	double			cim;
+	double			nre;
+	double			nim;
+	double			oldre;
+	double			oldim;
+	double			zoom;
+	double			m_x;
+	double			m_y;
+	int				max;
 	char			freeze;
-	t_julia			j;
-	t_mandel		m;
-	t_bship			bs;
 }					t_frac;
 
 void				ft_set_zero(double *nre, double *nim, double *oldre,
@@ -99,9 +60,9 @@ void				ft_process_bship(t_frac f);
 void				ft_init_julia(t_frac *f);
 void				ft_init_mandel(t_frac *f);
 void				ft_init_bship(t_frac *f);
-void				ft_draw_julia(t_julia *j, int width, int height);
-void				ft_draw_mandel(t_mandel *m, int width, int height);
-void				ft_draw_bship(t_bship *bs, int width, int height);
+void				ft_draw_julia(t_frac *j, int width, int height);
+void				ft_draw_mandel(t_frac *m, int width, int height);
+void				ft_draw_bship(t_frac *bs, int width, int height);
 int					ft_keyboard_events_j(int keycode, t_frac *f);
 int					ft_keyboard_events_m(int keycode, t_frac *f);
 int					ft_keyboard_events_bs(int keycode, t_frac *f);

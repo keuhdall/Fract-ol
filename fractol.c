@@ -6,13 +6,13 @@
 /*   By: lmarques <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 10:49:47 by lmarques          #+#    #+#             */
-/*   Updated: 2016/12/07 02:45:31 by lmarques         ###   ########.fr       */
+/*   Updated: 2016/12/08 14:54:05 by lmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_draw_julia(t_julia *j, int width, int height)
+void	ft_draw_julia(t_frac *j, int width, int height)
 {
 	t_point	p;
 	int		i;
@@ -40,7 +40,7 @@ void	ft_draw_julia(t_julia *j, int width, int height)
 	}
 }
 
-void	ft_draw_mandel(t_mandel *m, int width, int height)
+void	ft_draw_mandel(t_frac *m, int width, int height)
 {
 	t_point	p;
 	int		i;
@@ -69,7 +69,7 @@ void	ft_draw_mandel(t_mandel *m, int width, int height)
 	}
 }
 
-void	ft_draw_bship(t_bship *bs, int w, int h)
+void	ft_draw_bship(t_frac *bs, int w, int h)
 {
 	t_point	p;
 	int		i;
